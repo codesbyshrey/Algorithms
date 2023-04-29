@@ -1,0 +1,2 @@
+// MAKE ARRAY EMPTY
+// HARD
