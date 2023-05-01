@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/combination-sum/
+
 // Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target.
 // You may return the combinations in any order.
 
@@ -29,23 +31,23 @@ let target3 = 1; // []
  */
 var combinationSum = function(candidates, target) {
     let result = []; // final result
-    let tempVal;
     let tempArr = []; // temp array that will be pushed into result array
 
-    // recursive function that takes in index and sum
-        // if sum > target we break
-        // if sum == target --> push a copy of our temp into it
-
-        // for loop
-            // if value in candidates is > target, contionue
-            // temp.push value of candidates
-            // recursion? maybe pass in i and sum + candidates[i]
-                // should loop on itself until sum hits one of the if statements above
-            // pop temp to clear the value in temp
-
-    for (let i = 0; i < candidates.length; i++) {
-
+    let iterate = (idx, sum) => {
+        if (sum > target) return;
+        if (sum == target) {
+            result.push([...tempArr])
+            return;
+        }
+        // recursive function within for loop
+        for (let i = idx; i < candidates.length; i++) {
+            if (candidates[i] > target) continue
+            tempArr.push(candidates[i])
+            iterate(i, sum + candidates[i])
+            tempArr.pop()
+        }
     }
+    iterate (0,0) //initialize and call function
     return result;
 };
 
